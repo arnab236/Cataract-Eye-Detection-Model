@@ -9,7 +9,7 @@ import os
 
 IMG_SIZE = 224
 BATCH_SIZE = 32
-EPOCHS = 100
+EPOCHS = 15
 
 dataset_path = "./dataset"
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Cataract Detection System</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👁 Cataract Detection System</h1>
+<p>Upload an eye image to check for cataract</p>
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+
+<label class="upload-box">
+<input type="file" name="image" id="imageInput" required>
+<span>Choose Eye Image</span>
+</label>
+
+<img id="preview" class="preview"/>
+
+<button type="submit">Analyze Image</button>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+<h2>{{ result }}</h2>
+
+{% if severity %}
+<h3>Severity Level: {{ severity }}</h3>
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+
+input.onchange = evt => {
+const [file] = input.files
+if (file) {
+preview.src = URL.createObjectURL(file)
+preview.style.display = "block"
+}
+}
+</script>
+
+</body>
+</html>
